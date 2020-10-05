@@ -1,0 +1,159 @@
+
+.categories-admin{
+    size: 10px;
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 350px;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 5px;
+
+}
+
+.categories-admin-products {
+    size: 10px;
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 5px
+
+}
+
+.row {
+    margin-top: 50px;
+    padding: 30px;
+
+}
+
+.actions .nav-item {
+    size: 10px;
+    color: black;
+    margin-top: 5px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    background-color: white;
+}
+
+h2  {
+    font-family: Consolas, "andale mono", "lucida console", monospace;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.mid_title {
+    margin-left: 100px;
+}
+
+.hero .sub-hero {
+    margin-top: 100px;
+}
+
+.project-list h3 {
+    font-family: Consolas, "andale mono", "lucida console", monospace;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.User-Details {
+    margin-top: 50px;
+}
+
+
+.left-box,
+.center-box,
+.right-box {
+    vertical-align: middle;
+    display: inline-block;
+    padding: 10px;
+
+}
+
+
+.circle {
+  border-radius: 100%;
+  background: cornflowerblue;
+  text-align: center;
+  position: relative;
+  display: table;
+  height: 60px;
+  z-index: 10;
+  color: #fff;
+  width: 60px;
+}
+
+
+.circle .circle-content {
+    vertical-align: middle;
+    display: table-cell;
+    font-size: 11px;
+}
+
+
+.circle.two:before,
+.circle.one:before {
+  transform: rotate(0deg);
+  position: absolute;
+  margin: 0 -20px 5 5;
+  background: #000;
+  width: 25px;
+  content: '';
+  height: 3px;
+  right: 100%;
+  z-index: -100;
+  top: 50%;
+}
+
+.content-section-admin {
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: auto;
+    max-width: 900px;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10px;
+
+}
+
+.content-section-admin-user {
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: auto;
+    max-width: 900px;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10px;
+
+}
+
+.content-section-delivery {
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: auto;
+    max-width: 900px;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+}
+
+
+.stats {
+    padding: 0px;
+    text-align: center;
+}
+
+.stats .stat {
+    display: inline-block;
+    min-width: 170px;
+}
+

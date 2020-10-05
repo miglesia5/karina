@@ -1,0 +1,103 @@
+{% extends "main/layout.html" %}
+{% block title %} Thank you {% endblock %}
+{% block additional_css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='uxdes.css') }}"/>
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='view_admin.css') }}"/>
+{% endblock %}
+
+{% block main_content %}
+
+    {% if current_user.is_authenticated %}
+
+        <div class="row">
+
+        <h1>{{ current_user.fname }} Muchisimas gracias por su compra</h1>
+            <div class="col-md-8">
+
+                <div class="content-section-request">
+
+                    <legend class="border-bottom mb-2"> Aqui estan todas tus Ordenes por estado...</legend>
+
+                    <div class="table-responsive">
+                        <table class="table table-sm table-condensed table-striped" id="Cart">
+                            <thead>
+                            <tr>
+                                <th scope="col">Diseño</th>
+                                <th scope="col">Total</th>
+
+                                <th scope="col">Fechas y estado</th>
+
+                                <th scope="col">Acciones</th>
+
+
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for i in items %} {% if i.status != 'Cancel' %}
+                                <td scope="col"> {{ i.product_name }}</td>
+                                <td scope="col">  $ {{ "{0:.1f}".format((i.price)*(i.quantity)) }} MXN</td>
+
+                                <td class="status">
+
+                                            <div class="left-box">
+                                                <div class="big-circle circle">
+                                                    <div class="circle-content">
+
+                                                        {% if i.status == "pending" %} Orden no Completa{% endif %}
+                                                    {% if i.order_date %} Ordenado:
+                                                        {{i.order_date.strftime('%m-%d')}} {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="right-box">
+                                                <div class="circle one">
+                                                    <div class="circle-content">
+                                                     {% if i.status == "Payed" %} Pendiente de Entrega {% endif %}
+                                                    {% if i.status == "Ordered" %} Pendiente de Pagot {% endif %}
+                                                    <p>{% if i.delivery_date %} Enviado: {{i.delivery_date.strftime('%m-%d')}} {% endif %}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="right-box">
+                                                <div class="circle purple two">
+                                                    <div class="circle-content"></div>
+                                                    <div class="circle-content">
+                                                        <p>{% if i.received_date %} Recivido: {{i.received_date.strftime('%m-%d')}} {% endif %}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                <div class="buttons">
+                                 <td scope="col"> <a class="btn btn-secondary btn-sm m-1" href="{{ url_for('carts.cart_item', itemid=i.itemid) }}">Detalle</a>
+
+                                     {% if i.status == 'Ordered' %}
+
+                                     <a class="btn btn-danger btn-sm m-1" href="{{ url_for('orders.cancel_order') }}">Cancelar</a>
+                                     {% endif %}
+
+                                 </td>
+                                </div>
+
+
+
+                                </tr>
+                                {% endif %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+    {% endif %}
+{% endblock main_content %}
+

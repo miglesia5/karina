@@ -1,0 +1,203 @@
+{% extends "main/layout.html" %}
+{% block title %} Account Update {% endblock %}
+{% block additional_css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='uxdes.css') }}"/>
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='view_admin.css') }}"/>
+{% endblock %}
+
+{% block main_content %}
+
+    {% if current_user.is_authenticated %}
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="content-section-account">
+                    <div class="media">
+                        <img class="rounded-circle" src="{{ image_file }}">
+                        <div class="media-body">
+                            <h2>{{ current_user.fname }}</h2>
+                            <p class="text-secondary">{{ current_user.email }}</p>
+                        </div>
+                    </div>
+
+
+
+                    <form method="POST" action="" enctype="multipart/form-data">
+                        {{ form.hidden_tag() }}
+                        <fieldset class="form-group">
+                            <legend class="border-bottom mb-2">Cambia la informacion de tu Cuenta</legend>
+
+                                   <div class="form-group">
+                            {{ form.submit(class="btn btn-primary") }}
+                    </div>
+
+                            <div class="form-group">
+                    {{ form.fname.label(class="form-control-label") }}
+
+                    {% if form.fname.errors %}
+                        {{ form.fname(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.fname.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.fname(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                            <div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                            <div class="form-group">
+                    {{ form.complete_address1.label(class="form-control-label") }}
+                    {% if form.complete_address1.errors %}
+                        {{ form.complete_address1(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.complete_address1.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.complete_address1(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                            <div class="form-group">
+                        {{ form.zipcode.label(class="form-control-label") }}
+                        {% if form.zipcode.errors %}
+                            {{ form.zipcode(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.zipcode.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.zipcode(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                            <div class="form-group">
+                        {{ form.phone.label(class="form-control-label") }}
+                        {% if form.phone.errors %}
+                            {{ form.phone(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.phone.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.phone(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                            <div class="form-group">
+                    {{ form.picture.label() }}
+                    {{ form.picture(class="form-control-file") }}
+                    {% if form.picture.errors %}
+                        {% for error in form.picture.errors %}
+                            <span class="text-danger">{{ error }}</span></br>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                        </fieldset>
+                        <div class="form-group">
+                            {{ form.submit(class="btn btn-primary") }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+
+                <div class="content-section-request">
+
+                    <legend class="border-bottom mb-2">{{ current_user.fname }} Estos son tus diseños...</legend>
+
+                    <div class="table-responsive">
+                        <table class="table table-sm table-condensed table-striped" id="Cart">
+                            <thead>
+                            <tr>
+                                <th scope="col">Diseño</th>
+                                <th scope="col">Total</th>
+                                <th scope="col">Estado y Fechas</th>
+                                <th scope="col">Acciones</th>
+
+
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for i in items %} {% if i.status != 'Cancel' %}
+                                <td scope="col"> {{ i.product_name }}</td>
+                                <td scope="col">  $ {{ "{0:.1f}".format((i.price)*(i.quantity)) }} MXN</td>
+
+                                <td class="status">
+
+                                            <div class="left-box">
+                                                <div class="big-circle circle">
+                                                    <div class="circle-content">
+
+                                                        {% if i.status == "pending" %} Pendiente de Ordenar {% endif %}
+                                                    {% if i.order_date %} Ordenado:
+                                                        {{i.order_date.strftime('%m-%d')}} {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="right-box">
+                                                <div class="circle one">
+                                                    <div class="circle-content">
+                                                     {% if i.status == "Payed" %} Pendiente de Entrega {% endif %}
+                                                    {% if i.status == "Ordered" %} Pago Pendiente {% endif %}
+                                                    <p>{% if i.delivery_date %} Enviado: {{i.delivery_date.strftime('%m-%d')}} {% endif %}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="right-box">
+                                                <div class="circle purple two">
+                                                    <div class="circle-content"></div>
+                                                    <div class="circle-content">
+                                                        <p>{% if i.received_date %} Recibido: {{i.received_date.strftime('%m-%d')}} {% endif %}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                <div class="buttons">
+                                 <td scope="col"> <a class="btn btn-secondary btn-sm m-1" href="{{ url_for('carts.cart_item', itemid=i.itemid) }}">Detalle</a>
+
+                                     {% if i.status == 'Ordered' %}
+
+                                     <a class="btn btn-danger btn-sm m-1" href="{{ url_for('orders.cancel_order') }}">Cancelar</a>
+                                     {% endif %}
+
+                                 </td>
+                                </div>
+
+                                </tr>
+                                {% endif %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+    {% endif %}
+{% endblock main_content %}
+

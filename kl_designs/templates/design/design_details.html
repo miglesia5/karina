@@ -1,0 +1,95 @@
+{% extends "main/layout.html" %}
+{% block title %} Category Details {% endblock %}
+{% block additional_css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='uxdes.css') }}"/>
+{% endblock %}
+
+{% block main_content %}
+
+        <div class="hero">
+            <div class="sub-hero">
+                Design:
+                {{ design.design_name }}
+            </div>
+        </div>
+
+        <div class="project-list container">
+            <div class="row">
+                <div class="col-sm-3 nav-sidebar-section">
+                    <h3>Estadistica</h3>
+                    <p></p>
+                     <h6> Dia Creada: {{ design.date_posted.strftime('%Y-%m-%d') }}</h6>
+                     <hr>
+                    <h6> Numero de Indentificacion #: {{ category.id }} </h6>
+                    <p></p>
+                </div>
+
+
+                <div class="col-sm-7">
+
+                    <h2>Descripcion</h2>
+
+                    <pre>Resumen | Descripcion detallada de la Categoria</pre>
+                    <p class="summary">
+                       {{ design.description }}
+                    </p>
+
+                     {% if current_user.role == "admin" %}
+
+                    <div class="btn1">
+                        <hr>
+
+
+                    <img class="categories_img" src="{{ url_for('static', filename='photos/' + design.image_file) }}">
+
+                        <hr>
+
+                    </div>
+
+                </div>
+
+                 <div class="col-sm-2">
+                      <div class="buttons">
+
+                             <td scope="col"> <a class="btn btn-secondary btn-sm mt-1 mb-1" href="/category/{{ design.id }}/update">Editar</a> </td>
+
+
+                             <td scope="col"> <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Borrar</button></td>
+                        <!-- Modal -->
+
+                        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteModalLabel">Borrar Categoria?</h5>
+
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+                                       <form action="{{ url_for('designs.delete_design', id=design.id) }}" method="POST">
+
+                                            <input class="btn btn-danger" type="submit" value="Borrar">
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+    </div>
+                     <hr>
+                    <p></p>
+                 </div>
+
+            </div>
+        </div>
+
+    {% endif %}
+{% endblock main_content %}

@@ -1,0 +1,273 @@
+.main_content {
+    background: white;
+    margin: 0px;
+    padding: 0px 0px 50px;
+}
+
+
+.carousel-caption1 {
+    position: absolute;
+    right: 15%;
+    top: 20px;
+    left: 15%;
+    z-index: 10;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    font-family: Consolas, "andale mono", "lucida console", monospace;
+    color: black;
+}
+
+.carousel-item .active img {
+    height: 200px;
+}
+
+
+
+.hero {
+    background-color: white;
+    color: black;
+    font-size: 18px;
+    font-family: Consolas, "andale mono", "lucida console", monospace;
+    padding: 50px 0px;
+    text-align: center;
+
+}
+
+.hero .sub-hero {
+    margin-top: 70px;
+}
+
+.hero .sub-home {
+    margin-top: 70px;
+    margin-right: 200px;
+    margin-left: 200px;
+}
+
+.hero h1 {
+    padding: 30px;
+}
+
+.hero small {
+    font-size: 25px;
+}
+
+.hero .sub-hero .carousel_container {
+    width: 700px;
+    height: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero a {
+    font-size: 12px;
+}
+
+.content-section {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 700px;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10px;
+
+}
+
+
+.content-section-account {
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: auto;
+    max-width: 550px;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10px;
+
+}
+
+
+.content-section-request {
+    margin-top: 50px;
+    margin-left: 0px;
+    margin-right: auto;
+    max-width: 800px;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10px;
+
+}
+
+
+.container_category_list {
+     font-family: Consolas, "andale mono", "lucida console", monospace;
+
+}
+
+.container_category_list .categories {
+    margin-top: 20px;
+    display: inline-block;
+
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    background-color: white;
+
+}
+
+.container_category_list .categories img {
+    width: 300px;
+    height: 206px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+
+.sub-home .container_category_list .categories .title a {
+    color: black;
+    font-family: "SF Mono", "IBM Plex Mono", "Menlo", monospace;
+    font-size: 20px;
+}
+
+.container_category_list .categories .description {
+    font-size: 30px;
+}
+
+
+.container_product_list {
+    font-family: Consolas, "andale mono", "lucida console", monospace;
+    alignment: center;
+
+}
+
+.container_product_list .categories {
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: auto;
+    width: 300px;
+    background-color: white;
+
+    padding: 10px;
+}
+
+.container_product_list img {
+    width: 275px;
+    height: 206px;
+    margin-left: auto;
+    margin-right: auto;
+
+
+}
+
+.container_product_list .categories .title a{
+    font-size: 20px;
+    color: black;
+    margin-left: 75px;
+}
+
+.container_product_list .categories .price {
+    font-size: 12px;
+    color: gray;
+    margin-left: 75px;
+}
+
+
+.rounded-circle {
+    width: 150px;
+    height: 150px;
+    padding: 10px;
+
+}
+
+.cart_total {
+    font-family: Consolas, "andale mono", "lucida console", monospace;
+    font-size: 30px;
+    margin-left: 180px;
+
+}
+
+.order_shopout {
+    margin-left: 500px;
+}
+
+.view_orders {
+    font-family: Consolas, "andale mono", "lucida console", monospace;
+    margin-left: 190px;
+    font-size: 10px;
+}
+
+.shop_more {
+    margin-top: 0px;
+    margin-left: 250px;
+    font-family: Consolas, "andale mono", "lucida console", monospace;
+    font-size: 10px;
+}
+
+.form-group-dropdown {
+    padding: 10px;
+}
+
+
+.category_table {
+    height: 35px;
+    width: 35px;
+    border-radius: 25px;
+}
+
+.table-order {
+    margin-right: 25px;
+
+}
+
+
+.table-services {
+    margin-right: 30px;
+    color: dimgrey;
+
+}
+
+.services img {
+    border-radius: 15px;
+    height: 30px;
+    width: 30px;
+}
+
+.images img {
+    padding: 3px;
+    align-content: center;
+
+    border-radius: 15px;
+    height: 20px;
+    width: 25px;
+    font-size: 1px;
+}
+
+.images {
+    font-family: Consolas, "andale mono", "lucida console", monospace;
+    text-align: center;
+    font-size: 7px;
+
+}
+
+.services {
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: center;
+    font-family: Consolas, "andale mono", "lucida console", monospace;
+    color: dimgrey;
+}
+
+.thankyou {
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: center;
+    font-family: Consolas, "andale mono", "lucida console", monospace;
+
+}
+
+

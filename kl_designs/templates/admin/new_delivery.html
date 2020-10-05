@@ -1,0 +1,64 @@
+{% extends "main/layout.html" %}
+
+{% block additional_css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='uxdes.css') }}"/>
+{% endblock %}
+
+{% block main_content %}
+
+    {% if current_user.is_authenticated %}
+    {% if current_user.role == "admin" %}
+
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Categoria</legend>
+
+                <div class="form-group">
+                    {{ form.deliveryid.label(class="form-control-label") }}
+
+                    {% if form.deliveryid.errors %}
+                        {{ form.deliveryid(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.deliveryid.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.deliveryid(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.carrier.label(class="form-control-label") }}
+
+                    {% if form.carrier.errors %}
+                        {{ form.carrier(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.carrier.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.carrier(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+
+            </fieldset>
+
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+                <a class="btn btn-outline-primary" href="{{ url_for('admins.index') }}">Regreso al Dashboard</a> </td>
+            </div>
+
+        </form>
+     <div class="border-top pt-3">
+
+    </div>
+    </div>
+    {% endif %}
+    {% endif %}
+
+{% endblock main_content %}

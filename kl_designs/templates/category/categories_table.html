@@ -1,0 +1,115 @@
+{% extends 'main/layout.html' %}
+
+{% block additional_css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='uxdes.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='view_admin.css') }}"/>
+
+{% endblock %}
+
+{% block main_content %}
+
+    <div class="container">
+    {% if current_user.is_authenticated %}
+
+    <div class="hero">
+        <h1>Karina Loranca Designs</h1>
+
+    <small>
+      Todas las Categorias
+    </small>
+    </div>
+
+    <div class="stats">
+        <div class="stat"><a href="{{ url_for('admins.index') }}"> Back to Dashboard </a></div>
+        <div class="stat">{% if category_count %}<a href="{{ url_for('categories.table_categories') }}"> {{ category_count }} Categorias </a> {% endif %}</div>
+        <div class="stat"> {% if product_count %} <a href="{{ url_for('products.table_products') }}">{{ product_count }} Productos</a>  {% endif %}</div>
+        <div class="stat"> {% if user_count %} <a href="{{ url_for('admins.user_stats') }}">{{ user_count }} Clientes</a>  {% endif %}</div>
+    </div>
+
+        <div class="row">
+
+            <div class="col-md-2">
+                <div class="actions">
+                    <h2>Categories Stats</h2>
+                    <hr>
+                </div>
+            </div>
+
+
+            <div class="col-md-10">
+
+                <div class="content-section-admin-user">
+
+                <legend class="border-bottom mb-2">Todas las Categories</legend>
+
+
+                    <div class="table-responsive">
+                        <table class="table table-sm table-condensed table-striped" id="Cart">
+                            <thead>
+                            <tr>
+                                <th scope="col">Categories</th>
+                                <th scope="col">Foto</th>
+                                <th scope="col">Acciones</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for c in categories %}
+                                <td scope="col"> {{ c.category_name }}</td>
+                                <td scope="col"><img class="category_table" src="{{ url_for('static', filename='photos/' + c.image_file) }}"></td>
+
+
+
+                                <td scope="col"> <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Borrar</button></td>
+                           <!-- Modal -->
+                                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                 <div class="modal-dialog" role="document">
+                                     <div class="modal-content">
+                                         <div class="modal-header">
+                                             <h5 class="modal-title" id="deleteModalLabel">Borrar Item?</h5>
+                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                 <span aria-hidden="true">&times;</span>
+                                             </button>
+                                         </div>
+
+                                         <div class="modal-footer">
+                                             <button type="button" class="btn btn-success" data-dismiss="modal">No Borrar</button>
+
+                                             <form action="{{ url_for('categories.delete_category', id = c.id) }}" method="POST">
+                                                 <input class="btn btn-danger" type="submit" value="Borrar">
+                                             </form>
+                                         </div>
+                                     </div>
+                                 </div>
+                           </div>
+
+                                <td scope="col"> <a class="btn btn-secondary btn-sm m-1" href="{{ url_for('categories.category', id=c.id) }}">Detalle</a> </td>
+
+                                 <td scope="col"> <a class="btn btn-primary btn-sm m-1" href="{{ url_for('categories.update_category', id=c.id) }}">Update</a> </td>
+
+
+
+
+
+
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <div class="col-md-0">
+            </div>
+
+        </div>
+
+
+
+    {% endif %}
+
+{% endblock main_content %}

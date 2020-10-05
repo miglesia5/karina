@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Karina Loranca Jewelry{% endblock %}</title>
+
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,600,600italic,700,700italic|Source+Code+Pro:500">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='layouts.css') }}"/>
+
+    {% block additional_css %}{% endblock %}
+
+</head>
+
+<nav class="navbar navbar-expand-md fixed-top">
+      <div class="container home-main">
+        <a class="navbar-brand mr-4" href="{{ url_for('main.home') }}">Karina Loranca Jewelry Studio</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      <div class="collapse navbar-collapse" id="navbarToggle">
+          <div class="navbar-titles">
+
+            {% if current_user.is_authenticated %}
+                {% if current_user.role == "user" %}
+
+
+                    <div class="dropdown">
+                      <a class="nav-item"  id="dropdownUserButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       <img class="social-img" src="{{ url_for('static', filename='photos/assets/cart.jpg')}}">
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="dropdownUserButton">
+                        <a class="dropdown-item" href="{{ url_for('carts.user_carts', fname=fname) }}">Carrito</a>
+                        <a class="dropdown-item" href="{{ url_for('categories.all_categories') }}">Categories</a>
+                        <a class="dropdown-item" href="{{ url_for('products.all_product') }}">Productos</a>
+                        <a class="dropdown-item" href="{{ url_for('designs.all_designs') }}">Diseños</a>
+                      </div>
+                    </div>
+
+                    <div class="dropdown">
+
+                        <a class="nav-item"  id="dropdownUserButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         <img class="social-img" src="{{ url_for('static', filename='photos/assets/menu.png')}}">
+                        </a>
+                      <div class="dropdown-menu" aria-labelledby="dropdownUserButton">
+                        <a class="dropdown-item" href="{{ url_for('users.account') }}">Detalle de Cuenta</a>
+                          <hr>
+                        <a class="dropdown-item" href="{{ url_for('users.logout') }}">Cerrar Sesion</a>
+                      </div>
+                    </div>
+
+
+                {% endif %}
+
+                {% if current_user.role == "admin" %}
+
+                    <div class="dropdown">
+                      <a class="nav-item"  id="dropdownUserButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       <img class="social-img" src="{{ url_for('static', filename='photos/assets/control.png')}}">
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="dropdownUserButton">
+                          <a class="dropdown-item" href="{{ url_for('admins.index') }}">Console</a>
+                          <a class="dropdown-item" href="{{ url_for('admins.delivery_stats') }}">Deliveries</a>
+                          <a class="dropdown-item" href="{{ url_for('categories.table_categories') }}">Categories</a>
+                          <a class="dropdown-item" href="{{ url_for('products.table_products') }}">Products</a>
+                          <hr>
+                        <a class="dropdown-item" href="{{ url_for('admins.user_stats') }}">User</a>
+                      </div>
+                    </div>
+
+
+                    <div class="dropdown">
+                      <a class="nav-item"  id="dropdownUserButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       <img class="social-img" src="{{ url_for('static', filename='photos/assets/cart.jpg')}}">
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="dropdownUserButton">
+                        <a class="dropdown-item" href="{{ url_for('carts.user_carts', fname=fname) }}">Carrito</a>
+                        <a class="dropdown-item" href="{{ url_for('categories.all_categories') }}">Categories</a>
+                        <a class="dropdown-item" href="{{ url_for('products.all_product') }}">Productos</a>
+                        <a class="dropdown-item" href="{{ url_for('designs.all_designs') }}">Diseños</a>
+                      </div>
+                    </div>
+
+                    <div class="dropdown">
+
+                        <a class="nav-item"  id="dropdownUserButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         <img class="social-img" src="{{ url_for('static', filename='photos/assets/menu.png')}}">
+                        </a>
+                      <div class="dropdown-menu" aria-labelledby="dropdownUserButton">
+                        <a class="dropdown-item" href="{{ url_for('users.account') }}">Detalle de Cuenta</a>
+                          <hr>
+                        <a class="dropdown-item" href="{{ url_for('users.logout') }}">Cerrar Sesion</a>
+                      </div>
+                    </div>
+
+
+                {% endif %}
+
+            {% else %}
+
+                <div class="dropdown">
+
+                  <a class="nav-item"  id="dropdownUserButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img class="social-img" src="{{ url_for('static', filename='photos/assets/menu.png')}}">
+                  </a>
+
+                  <div class="dropdown-menu" aria-labelledby="dropdownUserButton">
+                    <a class="dropdown-item" href="{{ url_for('users.login') }}">Inciar Sesion</a>
+                      <hr>
+                    <a class="nav-item nav-link" href="{{ url_for('users.registration') }}">Registrate</a>
+                  </div>
+                </div>
+
+            {% endif %}
+
+        </div>
+    </div>
+</nav>
+
+<div class="message">
+<div class="col-md-12">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+</div>
+
+<div class="main_content">
+    {% block main_content %}{% endblock %}
+    {% block additional %}{% endblock %}
+</div>
+
+<footer>
+    <div class="copyright">
+        Esta Pagina fue construida para crear experiencias de Diseño.<br>
+        Su objetico es mostrar, modelar y entender los deseos de nuestos Clientes.<br>
+        <br>
+        <br>Puedes tambien visitar nuestras paginas sociales
+
+        <p>
+            <a href="https://www.instagram.com/karinalorancastudio/?hl=es-la">
+                <img class="social-img" src="{{ url_for('static', filename='photos/assets/insta.png')}}"></a>
+            <a href="https://www.facebook.com/karinalorancastudio/?modal=admin_todo_tour">
+                <img class="social-img" src="{{ url_for('static', filename='photos/assets/face.png')}}"></a>
+        </p>
+
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+
+<script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+{% block additional_js %}{% endblock %}

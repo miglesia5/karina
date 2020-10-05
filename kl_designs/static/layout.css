@@ -1,0 +1,72 @@
+body {
+    color: #222;
+    margin: 0px;
+    padding: 0px;
+    font-family: Source Sans Pro, Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    background-color: white;
+}
+
+.navbar-brand {
+    font-family: Consolas, "andale mono", "lucida console", monospace;
+    color: black;
+
+}
+
+
+.nav-item {
+    display: inline-block;
+    color: #222222;
+}
+
+.navbar-titles {
+    display: inline-block;
+    font-family: Consolas, "andale mono", "lucida console", monospace;
+    color: #222222;
+}
+
+.navbar-titles {
+    margin-left: auto;
+}
+
+nav {
+    height: 41px;
+    background-color: white;
+}
+
+.navbar-titles a {
+    display: inline-block;
+    font-size: 17px;
+    color: black;
+    font-family: Consolas, "andale mono", "lucida console", monospace;
+}
+
+.nav-item img {
+    width: 35px;
+    height: 35px;
+    margin-left: 10px;
+    border-radius: 5px;
+}
+
+footer {
+        margin-left: 0px;
+        padding: 50px;
+        text-align: center;
+        color: black;
+        background: white;
+}
+
+footer a {
+        color: #2495f2;
+}
+
+.message {
+    margin-top: 40px;
+}
+
+.social-img {
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+
+}

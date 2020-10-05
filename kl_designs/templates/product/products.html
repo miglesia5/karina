@@ -1,0 +1,68 @@
+{% extends "main/layout.html" %}
+{% block title %} Product Template {% endblock %}
+{% block additional_css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='uxdes.css') }}"/>
+{% endblock %}
+
+{% block main_content %}
+
+    <div class="hero">
+        <h1>Karina Loranca <p><small>Jewelry Studio</small></p></h1>
+
+    <div class="subtitle">
+           Busca entre nuestros mejores diseños de<strong>{{ category.category_name }}</strong>
+            <p><small><a href="{{ url_for('main.home') }}">
+                 o regresa a nuestra seccion de Categorias
+            </a></small></p>
+    </div>
+
+    <div class="container_product_list">
+
+        <div class="row">
+           <div class="col-md-1"></div>
+
+            <div class="col-md-10">
+
+            {% if get_category == products.category_id %}
+                {% for p in products %}
+                <div class="categories">
+
+                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                          <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="{{ url_for('static', filename='photos/' + p.image_file) }}"  class="d-block w-100">
+                            </div>
+                            <div class="carousel-item">
+                              <img src="{{ url_for('static', filename='photos/' + p.image_file_2) }}" class="d-block w-100" >
+                            </div>
+                            <div class="carousel-item">
+                              <img src="{{ url_for('static', filename='photos/' + p.image_file_3) }}" class="d-block w-100">
+                            </div>
+                          </div>
+                        </div>
+
+                    <div class="title"><a href="{{ url_for('carts.product_cart', productid=p.productid) }}"> {{ p.product_name }} </a>
+                    <p class="price">{{ "{0:.1f}".format(p.price) }} MXN</p>
+                    </div>
+
+                </div>
+
+
+
+                {% endfor %}
+
+                <hr>
+
+            {% endif %}
+
+            </div>
+
+            <div class="col-md-1"></div>
+        </div>
+        </div>
+    </div>
+ </div>
+
+
+
+{% endblock main_content %}

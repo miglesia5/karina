@@ -1,0 +1,149 @@
+{% extends 'main/layout.html' %}
+
+{% block additional_css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='uxdes.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='view_admin.css') }}"/>
+
+{% endblock %}
+
+{% block additional_js %}
+
+{% endblock %}
+
+{% block main_content %}
+
+    <div class="container">
+    {% if current_user.is_authenticated %}
+        {% if delivery_status.status != 'Cancel' %}
+        {% if delivery_status.status != 'Ordered' %}
+
+    <div class="hero">
+        <h1>Karina Loranca <p><small>Jewelry Studio</small></p></h1>
+
+    <small>
+      Consumer Statistics and Request Status
+    </small>
+    </div>
+
+    <div class="stats">
+        <div class="stat">
+
+            <div class="stat"> Entregas Pendientes: {% if delivery_pending %} {{ delivery_pending }}  {% endif %}</div>
+            <div class="stat"> Entregas Enviadas: {% if delivery_sent %} {{ delivery_sent }}  {% endif %}</div>
+            <div class="stat"> Entregas Recividas: {% if delivery_received %} {{ delivery_received }}  {% endif %}</div>
+
+    </div>
+
+        <div class="row">
+
+            <div class="col-md-2">
+                <div class="actions">
+                    <h2>Actions</h2>
+                    <hr>
+
+                    <a  href="{{ url_for('admins.index') }}">Regreso al Dashboard</a>
+                </div>
+
+            </div>
+
+
+            <div class="col-md-10">
+
+                <div class="content-section-delivery">
+
+                    <legend class="border-bottom mb-2">Todas las Entregas</legend>
+
+                    <div class="table-responsive">
+                        <table class="table table-sm table-condensed table-striped" id="Cart">
+                            <thead>
+                            <tr>
+                                <th scope="col">Cliente</th>
+                                <th scope="col">Accion</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Fechas</th>
+                                <th scope="col">Detalles de Envio</th>
+                            </tr>
+
+                            </thead>
+                            <tbody>
+                            {% for d in delivery_status %}
+                                {% if d.status != 'Cancel' %}
+                                    {% if d.status != 'Ordered' %}
+
+                                        <td scope="col"> {{ d.author.fname }}</td>
+
+                                        <td scope="col">
+                                            <a class="btn btn-secondary btn-sm m-1" href="{{ url_for('admins.delivery_detail', itemid=d.itemid) }}">Detalle</a>
+                                            <a class="btn btn-success btn-sm m-1" href="{{ url_for('admins.add_delivery', itemid=d.itemid) }}"> Enviar</a>
+                                            <p>
+                                            {% if d.status == 'Sent' %}
+                                            <a class="btn btn-primary btn-sm m-1" href="{{ url_for('admins.delivery_received', itemid=d.itemid) }}">Marcar como Recivida</a>
+                                            {% endif %}
+                                            </p>
+
+                                        </td>
+
+
+                                        <td class="status">
+
+                                            <div class="left-box">
+                                                <div class="big-circle circle">
+                                                    <div class="circle-content">
+                                                        {% if d.status == "Payed" %} No Enviada {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="right-box">
+                                                <div class="circle one">
+                                                    <div class="circle-content">
+                                                        {% if d.status == "Sent" %}
+                                                            Enviada
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="right-box">
+                                                <div class="circle purple two">
+                                                    <div class="circle-content"></div>
+                                                    <div class="circle-content">
+                                                        {% if d.status == "Received" %}
+                                                            Recivido
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                         <td scope="col">
+
+                                             {% if d.delivery_date %}
+                                                 {{ d.delivery_date.strftime('%m-%d-%Y') }}
+                                             {% endif %}
+                                             <p>
+                                                 {% if d.received_date %}
+                                                     {{ d.received_date.strftime('%m-%d-%Y') }}
+                                                 {% endif %}
+                                             </p>
+                                         </td>
+
+                                        <td scope="col"> {{ d.carrier }} <p>{{ d.deliveryid }}</p> </td>
+                                        </tr>
+
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        {% endif %}
+            </div>
+        {% endif %}
+    {% endif %}
+
+{% endblock main_content %}

@@ -1,0 +1,133 @@
+{% extends 'main/layout.html' %}
+
+{% block additional_css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='uxdes.css') }}">
+{% endblock %}
+
+{% block main_content %}
+
+
+    <div class="hero">
+
+        <h1>Karina Loranca <p><small>Jewelry Studio</small></p></h1>
+
+        <div class="subtitle">
+            Estos son nuestros Diseños, Mira nuestras...<strong>Categorias</strong>
+            <p><small><a href="{{ url_for('products.all_product') }}">
+                o Simplemente revisa nuestros productos, y diviertete encontrando el mejor diseño para ti...
+            </a></small></p>
+        </div>
+
+        <div class="sub-home">
+
+            <div class="container_category_list">
+                <div class="row">
+
+                    <div class="col-md-1"></div>
+
+                    <div class="col-md-10">
+
+                {% for category in categories %}
+
+                <div class="categories">
+
+                        <img class="account-img" src="{{ url_for('static', filename='photos/' + category.image_file) }}" >
+                        <div class="title"><a href="{{ url_for('main.product_category', category_name=category.category_name) }}">{{ category.category_name }} </a></div>
+
+                </div>
+
+                {% endfor %}
+
+             </div>
+
+            <hr>
+
+            </div>
+
+            <div class="col-md-1"></div>
+        </div>
+
+            <div class="container_designs_list">
+
+            <div class="row">
+                <div class="col-md-1"></div>
+
+                <div class="col-md-10">
+
+                </div>
+
+            <hr>
+
+            </div>
+
+            <div class="col-md-1"></div>
+        </div>
+        </div>
+
+    <section id="gallery" class="gallery">
+      <div class="container">
+          <hr>
+        <div class="section-title">
+          <h2>Collecciones y Galerias</h2>
+
+            <div class="row no-gutters d-block d-lg-flex flickity flickity-lg-none" data-flickity="{&quot;watchCSS&quot;: true}">
+                <!-- Item -->
+                 <div class="col-md-2"></div>
+                 <!-- Item -->
+                <div class="col-12 col-md-6 col-lg-4 d-flex flex-column bg-cover" style="background-image: url('static/concepts_kl/disenos.png');">
+                    <div class="" style="min-height: 470px;">
+                        <div class="card-body mt-auto mb-n11 py-8">
+                            <!-- Heading -->
+                            <h1 class="mb-0 font-weight-bolder">
+                               Diseños Especiales
+                            </h1>
+                        </div>
+                        <div class="card-body mt-auto py-8">
+
+                            <!-- Button -->
+                            <a class="btn btn-white stretched-link" href="{{ url_for('designs.all_designs') }}">
+                                Explora<i class="fe sr-field-error ml-8"></i>
+                            </a>
+
+                        </div>
+                      </div>
+                    </div>
+
+
+                 <!-- Item -->
+                <div class="col-14 col-md-6 col-lg-4 d-flex flex-column bg-cover" style="background-image: url('static/concepts_kl/anillos.png');">
+                    <div class="" style="min-height: 470px;">
+                        <div class="card-body mt-auto mb-n11 py-8">
+                            <!-- Heading -->
+                            <h1 class="mb-0 font-weight-bolder">
+                                Diseños del Mundo
+                            </h1>
+                        </div>
+                        <div class="card-body mt-auto py-8">
+
+                         <!-- Button -->
+                            <a class="btn btn-white stretched-link" href="{{ url_for('designs.world_designs') }}">
+                                Explora<i class="fe sr-field-error ml-8"></i>
+                            </a>
+
+                        </div>
+                      </div>
+                    </div>
+
+            </div>
+
+
+
+        </div>
+
+
+    </section>
+
+
+
+    </div>
+
+
+
+{% endblock main_content %}
+
