@@ -1,7 +1,7 @@
 {% extends "main/layout.html" %}
 {% block title %} User Cart {% endblock %}
 {% block additional_css %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='uxdes.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='uxdes4.css') }}"/>
 {% endblock %}
 
 {% block main_content %}
@@ -48,6 +48,7 @@
                 <td scope="col"> {{ i.product_name }}</td>
                 <td scope="col"> {{ i.quantity }} </td>
                 <td scope="col"> {{ i.status }} </td>
+
                 <td scope="col">  $ {{ "{0:.1f}".format((i.price)*(i.quantity)) }} MXN</td>
 
                 <div class="buttons">

@@ -44,7 +44,6 @@ def index():
                            )
 
 
-
 @admins.route("/move_to_payed/<itemid>", methods=['GET', 'POST'])
 @login_required
 def move_to_pay_items(itemid):
@@ -199,4 +198,38 @@ def user_account(id):
                            image_file=image_file, form=form,
                            revenue_pending=revenue_pending, revenue_ordered=revenue_ordered,
                            payed_ordered=payed_ordered)
+
+@admins.route("/admin/user_roles", methods=['GET', 'POST'])
+@login_required
+def user_roles():
+    user_count = db.session.query(User.id).count()
+    user = User.query.all()
+    return render_template('admin/user_role.html',
+                           user_count=user_count, user=user)
+
+
+@admins.route("/admin/update_user_role/<int:id>", methods=['GET', 'POST'])
+@login_required
+def update_user_role(id):
+    user_detail = User.query.filter_by(id=id).first_or_404()
+
+    form = Admin_Update_User_AccountForm()
+    if form.validate_on_submit():
+        user_detail.fname = form.fname.data
+        user_detail.email = form.email.data
+        user_detail.role = form.role.data
+
+        db.session.commit()
+        flash('User Data was Updated!', 'success')
+        return redirect(url_for('admins.index'))
+    elif request.method == 'GET':
+        form.fname.data = user_detail.fname
+        form.email.data = user_detail.email
+        form.role.data = user_detail.role
+
+
+    return render_template('admin/update_user_detail.html',
+                           user_detail=user_detail, form=form,
+                           )
+
 

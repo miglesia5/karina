@@ -1,7 +1,7 @@
 {% extends 'main/layout.html' %}
 
 {% block additional_css %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='uxdes.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='uxdes4.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='view_admin.css') }}"/>
 
 {% endblock %}
@@ -24,6 +24,10 @@
         <div class="stat"> {% if product_count %} <a href="{{ url_for('products.table_products') }}">{{ product_count }} Productos</a>  {% endif %}</div>
         <div class="stat"> {% if design_count %} <a href="{{ url_for('designs.table_designs') }}">{{ design_count }} Diseños</a>  {% endif %}</div>
         <div class="stat"> {% if user_count %} <a href="{{ url_for('admins.user_stats') }}">{{ user_count }} Clientes</a>  {% endif %}</div>
+        <div class="stat"> {% if user_count %} <a href="{{ url_for('admins.user_roles') }}">{{ user_count }} Roles de Usuarios</a>  {% endif %}</div>
+
+
+
 
     </div>
 

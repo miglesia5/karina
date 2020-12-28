@@ -53,12 +53,13 @@ class User(db.Model, UserMixin):
 
 class Item(db.Model):
     __table_args__ = {'extend_existing': True}
-
     itemid = db.Column(db.Integer, primary_key=True)
     quantity = db.Column(db.Integer, nullable=True)
+    size = db.Column(db.Integer, nullable=True)
     status = db.Column(db.String, default='pending')
 
     product_name = db.Column(db.String(100), nullable=True)
+    category_name = db.Column(db.String(100), nullable=True)
     description = db.Column(db.String(100), nullable=True)
     price = db.Column(db.DECIMAL)
 
@@ -78,7 +79,7 @@ class Item(db.Model):
     product_items = db.relationship('Product', backref='product_item', lazy=True)
 
     def __repr__(self):
-        return f"Item('{self.itemid}, '{self.quantity}', '{self.status}')"
+        return f"Item('{self.itemid}, '{self.quantity}', '{self.status}', '{self.size}')"
 
 
 class Category(db.Model):

@@ -1,7 +1,7 @@
 {% extends "main/layout.html" %}
 
 {% block additional_css %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='uxdes.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='uxdes4.css') }}"/>
 {% endblock %}
 
 {% block main_content %}
@@ -106,6 +106,7 @@
                             {{ form.hidden_tag() }}
 
                                 <div class="form-group-dropdown">
+                                <h3>Quantity</h3>
 
                                     {% if form.quantity.errors %}
                                         {{ form.quantity(class="dropdown" ) }}
@@ -115,11 +116,34 @@
                                             {% endfor %}
                                         </div>
                                     {% else %}
-                                        {{ form.quantity(class="btn btn-secondary dropdown-toggle") }}
+                                        {{ form.quantity(class="btn btn-light dropdown-toggle") }}
                                     {% endif %}
 
-                                {{ form.submit(class="btn btn-light") }}
+                                {{ form.submit(class="btn btn-sucess") }}
                             </div>
+
+                                {% if product.category_id == 2 %}
+                                    <div class="form-group-dropdown">
+                                 <h3>Size</h3>
+
+                                    {% if form.ring_size.errors %}
+                                        {{ form.ring_size(class="dropdown" ) }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.ring_size.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.ring_size(class="btn btn-primary dropdown-toggle") }}
+                                    {% endif %}
+                                 </div>
+                                {% endif %}
+
+                                <div class="white">
+                                    {{ form.ring_size }}
+                                </div>
+
+
                         </form>
 
                     <div class="border-top pt-3"></div>

@@ -3,7 +3,7 @@ from datetime import datetime
 from flask import (render_template, url_for, flash, redirect, Blueprint)
 from flask_login import current_user, login_required
 from sqlalchemy import func
-from kl_designs.models import Item, Product
+from kl_designs.models import Item, Product, Category
 from kl_designs import db
 from kl_designs.views.products.forms import Product_Item_Form
 from kl_designs.views.utils import send_order_email
@@ -17,11 +17,14 @@ def product_cart(productid):
     form = Product_Item_Form()
     product = Product.query.get_or_404(productid)
 
+
     if form.validate_on_submit():
         add_item = Item(
                         quantity=form.quantity.data,
+                        size=form.ring_size.data,
 
                         product_name= product.product_name,
+                        category_name=product.category_id,
                         description= product.description,
                         image_file= product.image_file,
                         image_file_2=product.image_file_2,
@@ -36,7 +39,9 @@ def product_cart(productid):
         flash('Tu producto fue agregado exitosament al carrito!', 'success')
         return redirect(url_for('products.all_product'))
 
-    return render_template('product/product_details_plus_cart_add.html', product=product, form=form)
+    return render_template('product/product_details_plus_cart_add.html',
+                           product=product, form=form,
+                           )
 
 
 @carts.route("/cart/int:<productid>/add", methods=['GET', 'POST'])
@@ -61,10 +66,6 @@ def add_one_product_to_cart(productid):
     return redirect(url_for('products.all_product'))
 
     return render_template('product/product_details_plus_cart_add.html', product=product, form=form)
-
-
-
-
 
 
 @carts.route("/delete_cart_item/<itemid>/delete", methods=['POST'])

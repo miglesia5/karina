@@ -1,0 +1,83 @@
+{% extends 'main/layout.html' %}
+
+{% block additional_css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='uxdesigns4.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='view_admin.css') }}"/>
+
+{% endblock %}
+
+{% block main_content %}
+
+    <div class="container">
+    {% if current_user.is_authenticated %}
+         {% if current_user.role == "admin" %}
+
+    <div class="hero">
+
+    </div>
+
+    <div class="stats">
+        <div class="stat"><a href="{{ url_for('admins.index') }}"> Back to Dashboard </a></div>
+    </div>
+
+        <div class="row">
+
+            <div class="col-md-2">
+                <div class="actions">
+                    <h2>Users Details</h2>
+
+                    <hr>
+                </div>
+            </div>
+
+
+            <div class="col-md-10">
+
+                <div class="content-section-admin-user">
+
+                <legend class="border-bottom mb-2">Detalles de Usuario</legend>
+                <a class="btn btn-primary btn-sm m-1" href="{{ url_for('admins.index') }}">Regreso al Dashboard</a> </td>
+                 <a class="btn btn-secondary btn-sm m-1" href="{{ url_for('admins.user_stats') }}">Regreso User Stats</a> </td>
+
+                    <div class="table-responsive">
+                        <table class="table table-sm table-condensed table-striped" id="Cart">
+                            <thead>
+                            <tr>
+                                <th scope="col">User</th>
+                                <th scope="col">mail</th>
+                                <th scope="col">Role</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for u in user %}
+                                <td scope="col"> {{ u.fname }}</td>
+                                <td scope="col"> {{ u.email }}</td>
+                                <td scope="col"> {{ u.role }} </td>
+
+
+                                <td scope="col"> <a class="btn btn-warning btn-sm m-1" href="{{ url_for('admins.update_user_role', id=u.id) }}">Update</a> </td>
+
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <div class="col-md-0">
+            </div>
+
+        </div>
+
+    {% endif %}
+     {% endif %}
+</div>
+<div class="col-md-0">
+</div>
+
+{% endblock main_content %}

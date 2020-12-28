@@ -13,10 +13,8 @@ import json
 
 orders = Blueprint('orders', __name__)
 
-stripe.api_key = 'sk_test_EOu5dzFt2hI1Hh0ufsycZULp00R4L1Nuvc'
-publishable_key = 'pk_test_QtVBUXSHjDZg22NPSqeUvkqD00IzES72Q0'
-
-
+stripe.api_key = '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'
+publishable_key = 'pk_live_c4NUXcZKUwZ7NRm2FBlucMl8009zCrdlAB'
 
 
 @orders.route("/user_order")

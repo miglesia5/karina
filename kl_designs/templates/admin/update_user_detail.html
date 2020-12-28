@@ -1,0 +1,94 @@
+{% extends 'main/layout.html' %}
+
+{% block additional_css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='uxdes4.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='view_admin.css') }}"/>
+
+
+{% endblock %}
+
+{% block main_content %}
+
+    <div class="container">
+    {% if current_user.is_authenticated %}
+
+    <div class="hero">
+    <div class="stat"><a href="{{ url_for('admins.index') }}"> Back to Dashboard </a></div>
+
+    </div>
+
+
+    <div class="row">
+
+            <div class="col-md-2"></div>
+            <div class="col-md-10">
+                <div class="content-section-admin-user">
+                    <div class="media">
+                        <img class="rounded-circle" src="{{ user_detail.image_file }}">
+                        <div class="media-body">
+                        </div>
+                    </div>
+
+                    <form method="POST" action="" enctype="multipart/form-data">
+                        {{ form.hidden_tag() }}
+                        <fieldset class="form-group">
+                            <legend class="border-bottom mb-2">Update User Profile and Info</legend>
+
+                            <div class="form-group">
+                                {{ form.fname.label(class="form-control-label") }}
+                                {% if form.fname.errors %}
+                                    {{ form.fname(class="form-control form-control-lg is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.fname.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.fname(class="form-control form-control-lg") }}
+                                {% endif %}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form.email.label(class="form-control-label") }}
+                                {% if form.email.errors %}
+                                    {{ form.email(class="form-control form-control-lg is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.email.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.email(class="form-control form-control-lg") }}
+                                {% endif %}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form.role.label(class="form-control-label") }}
+                                {% if form.role.errors %}
+                                    {{ form.role(class="form-control form-control-lg is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.role.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.role(class="form-control form-control-lg") }}
+                                {% endif %}
+                            </div>
+
+
+                        </fieldset>
+                        <div class="form-group">
+                            {{ form.submit(class="btn btn-danger") }} This is a user Account
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </div>
+
+    {% endif %}
+</div>
+<div class="col-md-0">
+</div>
+
+{% endblock main_content %}

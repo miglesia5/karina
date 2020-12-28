@@ -5,6 +5,8 @@ python-dateutil
 passlib
 flask_sqlalchemy
 flask_bcrypt
+alembic
+
 
 flask_login
 flask_mail
@@ -34,6 +36,8 @@ requests==2.24.0
 toml==0.10.1
 urllib3==1.25.9
 Werkzeug==1.0.1
+
+
 
 
 

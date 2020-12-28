@@ -31,3 +31,11 @@ class Admin_Update_User_AccountForm(FlaskForm):
 
     picture = FileField('Foto de Perfil', validators=[FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Cuidado')
+
+
+class Admin_Update_User_AccountForm(FlaskForm):
+    fname = StringField('Nombre Completo', validators=[DataRequired(), Length(min=2, max=20)])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    role = StringField('Role', validators=[DataRequired(), Length(min=2, max=20)])
+
+    submit = SubmitField('Update')

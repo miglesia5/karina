@@ -1,7 +1,7 @@
 {% extends "main/layout.html" %}
 {% block title %} Cart Item Detail {% endblock %}
 {% block additional_css %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='uxdes.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='uxdes4.css') }}"/>
 {% endblock %}
 
 {% block main_content %}
@@ -19,6 +19,12 @@
                     <h3>Pedido</h3>
                     <p></p>
                      <h6> Cantiada <h2> - {{ cart_item.quantity  }} - </h2></h6>
+
+                    {% if cart_item.category_name == "2" %}
+                    <hr>
+                    <h6> Tamaño : {{ cart_item.size  }} </h2></h6>
+                    {% endif %}
+
 
                     <hr>
                     <h6> Precio por Unidad: $ {{ "{0:.1f}".format(cart_item.price) }} MXN</h6>

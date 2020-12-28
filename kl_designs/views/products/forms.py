@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, TextAreaField, SelectField, FloatField
+from wtforms import StringField, SubmitField, TextAreaField, SelectField, FloatField, StringField
 from flask_wtf.file import FileField, FileAllowed
 from wtforms.validators import DataRequired
 
@@ -38,5 +38,10 @@ class Product_Item_Form(FlaskForm):
     quantity = SelectField('Cantidad',
                         choices=[('1', '1'), ('2', '2'),('3', '3'),('4', '4'),('5', '5'),
                                  ('6', '6'), ('7', '7'),('8', '8'),('9', '9'),('10', '10')])
+
+    ring_size = SelectField('Tamaño',
+                        choices=[('1', '1'), ('2', '2'),('3', '3'),('4', '4'),('5', '5'),
+                                 ('6', '6'), ('7', '7'),('8', '8'),('9', '9'),('10', '10')])
+
     submit = SubmitField('Agregar')
 
