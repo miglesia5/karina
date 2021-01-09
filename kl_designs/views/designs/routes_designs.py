@@ -85,7 +85,7 @@ def all_designs():
 
 @designs.route("/del_mundo")
 def world_designs():
-
+        designs = Design.query.all()
         return render_template('design/world_designs.html', designs=designs)
 
 

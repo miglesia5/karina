@@ -17,6 +17,21 @@
         </div>
 
         <div class="sub-home">
+            <div class="col-md-1"></div>
+
+            <div class="col-md-10">
+
+                {% for design in designs %}
+
+                <div class="categories">
+
+                        <img class="account-img" src="{{ url_for('static', filename='photos/' + design.image_file) }}" >
+
+                </div>
+
+                {% endfor %}
+
+             </div>
 
         Coming Soon
 
