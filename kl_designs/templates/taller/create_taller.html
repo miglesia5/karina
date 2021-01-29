@@ -1,0 +1,46 @@
+{% extends "main/layout.html" %}
+
+{% block additional_css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='uxdes4.css') }}"/>
+{% endblock %}
+
+{% block main_content %}
+
+    {% if current_user.is_authenticated %}
+    {% if current_user.role == "admin" %}
+
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Fotos del Taller</legend>
+
+                <div class="form-group">
+                    {{ form.taller_name.label(class="form-control-label") }}
+
+                    {% if form.taller_name.errors %}
+                        {{ form.taller_name(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.taller_name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.taller_name(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+            </fieldset>
+
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+     <div class="border-top pt-3">
+
+    </div>
+    </div>
+    {% endif %}
+    {% endif %}
+
+{% endblock main_content %}

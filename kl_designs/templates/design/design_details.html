@@ -20,7 +20,7 @@
                     <p></p>
                      <h6> Dia Creada: {{ design.date_posted.strftime('%Y-%m-%d') }}</h6>
                      <hr>
-                    <h6> Numero de Indentificacion #: {{ category.id }} </h6>
+                    <h6> Numero de Indentificacion #: {{ design.id }} </h6>
                     <p></p>
                 </div>
 
@@ -29,7 +29,7 @@
 
                     <h2>Descripcion</h2>
 
-                    <pre>Resumen | Descripcion detallada de la Categoria</pre>
+                    <pre>Resumen | Descripcion detallada del Diseño</pre>
                     <p class="summary">
                        {{ design.description }}
                     </p>
@@ -51,7 +51,7 @@
                  <div class="col-sm-2">
                       <div class="buttons">
 
-                             <td scope="col"> <a class="btn btn-secondary btn-sm mt-1 mb-1" href="/category/{{ design.id }}/update">Editar</a> </td>
+                             <td scope="col"> <a class="btn btn-secondary btn-sm mt-1 mb-1" href="/design/{{ design.id }}/update">Editar</a> </td>
 
 
                              <td scope="col"> <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Borrar</button></td>
@@ -61,7 +61,7 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="deleteModalLabel">Borrar Categoria?</h5>
+                                        <h5 class="modal-title" id="deleteModalLabel">Borrar Diseño?</h5>
 
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>

@@ -33,7 +33,10 @@ def create_app(config_class=Config):
 
     from kl_designs.views.categories.routes_categories import categories
     from kl_designs.views.products.routes_products import products
+
     from kl_designs.views.designs.routes_designs import designs
+    from kl_designs.views.taller.routes_taller import tallers
+    from kl_designs.views.anillos_de_compromisos.routes_anillos_de_compromiso import anillos
 
     from kl_designs.views.orders.routes_orders import orders
     from kl_designs.views.carts.routes_carts import carts
@@ -44,7 +47,10 @@ def create_app(config_class=Config):
 
     app.register_blueprint(categories)
     app.register_blueprint(products)
+
     app.register_blueprint(designs)
+    app.register_blueprint(tallers)
+    app.register_blueprint(anillos)
 
     app.register_blueprint(carts)
     app.register_blueprint(orders)

@@ -59,31 +59,6 @@
                                 <td scope="col"> {{ p.product_name }}</td>
                                 <td scope="col"><img class="category_table" src="{{ url_for('static', filename='photos/' + p.image_file) }}"></td>
 
-
-
-                                <td scope="col"> <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Borrar</button></td>
-                           <!-- Modal -->
-                                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-                                 <div class="modal-dialog" role="document">
-                                     <div class="modal-content">
-                                         <div class="modal-header">
-                                             <h5 class="modal-title" id="deleteModalLabel">Borrar Item?</h5>
-                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                 <span aria-hidden="true">&times;</span>
-                                             </button>
-                                         </div>
-
-                                         <div class="modal-footer">
-                                             <button type="button" class="btn btn-success" data-dismiss="modal">No Borrar</button>
-
-                                             <form action="{{ url_for('products.delete_product', product_id = p.productid) }}" method="POST">
-                                                 <input class="btn btn-danger" type="submit" value="Borrar">
-                                             </form>
-                                         </div>
-                                     </div>
-                                 </div>
-                           </div>
-
                                 <td scope="col"> <a class="btn btn-secondary btn-sm m-1" href="{{ url_for('products.product', productid=p.productid) }}">Detalle</a> </td>
 
                                 <td scope="col"> <a class="btn btn-primary btn-sm m-1" href="{{ url_for('products.update_product', productid=p.productid) }}">Update</a> </td>

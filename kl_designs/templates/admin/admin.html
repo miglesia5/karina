@@ -22,7 +22,11 @@
     <div class="stats">
         <div class="stat">{% if category_count %}<a href="{{ url_for('categories.table_categories') }}"> {{ category_count }} Categorias </a> {% endif %}</div>
         <div class="stat"> {% if product_count %} <a href="{{ url_for('products.table_products') }}">{{ product_count }} Productos</a>  {% endif %}</div>
+
         <div class="stat"> {% if design_count %} <a href="{{ url_for('designs.table_designs') }}">{{ design_count }} Diseños</a>  {% endif %}</div>
+        <div class="stat"> {% if design_count %} <a href="{{ url_for('tallers.table_tallers') }}">{{ taller_count }} Fotos de Taller</a>  {% endif %}</div>
+        <div class="stat"> {% if design_count %} <a href="{{ url_for('anillos.table_anillos') }}">{{ anillo_count }} Fotos de Anillos de Compromiso</a>  {% endif %}</div>
+
         <div class="stat"> {% if user_count %} <a href="{{ url_for('admins.user_stats') }}">{{ user_count }} Clientes</a>  {% endif %}</div>
         <div class="stat"> {% if user_count %} <a href="{{ url_for('admins.user_roles') }}">{{ user_count }} Roles de Usuarios</a>  {% endif %}</div>
 
@@ -40,6 +44,8 @@
                     <p><a  href="{{ url_for('categories.new_category') }}">Agregar una Categoria</a></p>
                     <p><a  href="{{ url_for('products.new_product') }}">Agregar un Producto</a></p>
                     <p><a  href="{{ url_for('designs.new_designs') }}">Agregar un Diseño</a></p>
+                    <p><a  href="{{ url_for('tallers.new_tallers') }}">Agregar una Foto de Taller</a></p>
+                    <p><a  href="{{ url_for('anillos.new_anillos') }}">Agregar una Foto de Anillos de Compromiso</a></p>
 
                 </div>
             </div>

@@ -76,8 +76,6 @@ def user_account_move_to_payed():
     return redirect(url_for('users.account'))
 
 
-
-
 @orders.route('/webhook', methods=['POST'])
 def webhook_received():
     # You can use webhooks to receive information about asynchronous payment events.
@@ -127,8 +125,6 @@ def thanks():
 def cancel_order():
     order_items = Item.query.filter_by(author=current_user).filter_by(status='Ordered').update({ Item.status: 'Cancel'})
     db.session.commit()
-
-    send_cancel_email(order_items, author=current_user)
 
     flash('Su Orden fue Cancelada!', 'danger')
     return redirect(url_for('main.home'))

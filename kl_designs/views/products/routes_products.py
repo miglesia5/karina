@@ -85,7 +85,7 @@ def delete_product(product_id):
     db.session.delete(product_delete)
     db.session.commit()
     flash('Su Producto fue borrado!', 'danger')
-    return redirect(url_for('main.home'))
+    return redirect(url_for('products.table_products'))
 
 
 @products.route("/all_product")

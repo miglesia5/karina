@@ -68,10 +68,10 @@ def add_one_product_to_cart(productid):
     return render_template('product/product_details_plus_cart_add.html', product=product, form=form)
 
 
-@carts.route("/delete_cart_item/<itemid>/delete", methods=['POST'])
+@carts.route("/delete_cart_item/<int:item_id>/delete", methods=['POST'])
 @login_required
-def delete_item(itemid):
-    cart_item_delete = Item.query.get_or_404(itemid)
+def delete_cart_item(item_id):
+    cart_item_delete = Item.query.get_or_404(item_id)
 
     db.session.delete(cart_item_delete)
     db.session.commit()

@@ -4,7 +4,7 @@ from flask_login import current_user, login_required
 
 
 from kl_designs import db
-from kl_designs.models import Category, Product, User
+from kl_designs.models import Category, Product, User, Design
 from kl_designs.views.utils import save_picture
 from kl_designs.views.categories.forms import CategoryForm, UpdateCategoryForm
 
@@ -74,7 +74,7 @@ def delete_category(id):
     db.session.delete(category_delete)
     db.session.commit()
     flash('Su Categoria fue Borrada!', 'danger')
-    return redirect(url_for('main.home'))
+    return redirect(url_for('categories.table_categories'))
 
 
 @categories.route("/all_categories")
@@ -88,7 +88,7 @@ def all_categories():
 @categories.route("/categories_table")
 def table_categories():
         categories = Category.query.all()
-        category_count = db.session.query(Category.id).count()
+        design_count = db.session.query(Design.id).count()
 
         user_count = db.session.query(User.id).count()
         product_count = db.session.query(Product.productid).count()
@@ -96,5 +96,5 @@ def table_categories():
 
 
         return render_template('category/categories_table.html',
-                               categories=categories, category_count=category_count,
+                               categories=categories, design_count=design_count,
                                product_count=product_count, user_count=user_count)

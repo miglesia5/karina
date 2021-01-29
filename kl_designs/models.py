@@ -137,7 +137,30 @@ class Design(db.Model):
     def __repr__(self):
         return f"Design('{self.design_name}')"
 
+class Taller(db.Model):
+    __table_args__ = {'extend_existing': True}
 
+    id = db.Column(db.Integer, primary_key=True)
+    taller_name = db.Column(db.String(100), nullable=False)
+    image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+
+    def __repr__(self):
+        return f"Taller('{self.taller_name}')"
+
+
+class AnillosCompromiso(db.Model):
+    __table_args__ = {'extend_existing': True}
+
+    id = db.Column(db.Integer, primary_key=True)
+    anillo_compromiso_name = db.Column(db.String(100), nullable=False)
+    image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+
+    def __repr__(self):
+        return f"AnilloCompromiso('{self.anillo_compromiso_name}')"
 
 class Comments(db.Model):
     __table_args__ = {'extend_existing': True}

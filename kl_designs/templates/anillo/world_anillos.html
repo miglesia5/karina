@@ -1,0 +1,35 @@
+{% extends 'main/layout.html' %}
+
+{% block additional_css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='uxdes4.css') }}"/>
+{% endblock %}
+
+{% block main_content %}
+
+    <div class="hero">
+        <h1>Karina Loranca <p><small>Jewelry Studio</small></p></h1>
+
+        <div class="subtitle">
+            Estas son las Fotos de Nuestro Anillos de Compromiso
+        </div>
+
+        <div class="sub-home">
+
+            <div class="col-md-12">
+
+                {% for anillo in anillos %}
+
+                <div class="categories">
+
+                        <img class="account-img" src="{{ url_for('static', filename='photos/' + anillo.image_file) }}" >
+
+                </div>
+
+                {% endfor %}
+
+             </div>
+        </div>
+
+    </div>
+
+{% endblock main_content %}

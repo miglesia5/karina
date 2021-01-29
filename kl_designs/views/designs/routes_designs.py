@@ -1,8 +1,6 @@
 from flask import (render_template, url_for, flash,
                    redirect, request, Blueprint)
 from flask_login import current_user, login_required
-
-
 from kl_designs import db
 from kl_designs.models import Product, User, Design
 from kl_designs.views.utils import save_picture
@@ -26,8 +24,8 @@ def new_designs():
         flash('Su Diseño fue Cread0!', 'success')
         return redirect(url_for('admins.index'))
 
-    return render_template('design/create_design.html', title='New Task',
-                           form=form, legend='New Category', image_file=image_file)
+    return render_template('design/create_anillo.html', title='New Task',
+                           form=form, image_file=image_file)
 
 
 @designs.route("/design/<int:id>")
@@ -35,7 +33,7 @@ def design(id):
         design = Design.query.get_or_404(id)
         image_design = db.session.query(Design.image_file)
 
-        return render_template('design/design_details.html', design=design, image_design=image_design)
+        return render_template('design/anillo_details.html', design=design, image_design=image_design)
 
 
 @designs.route("/design/<int:id>/update", methods=['GET', 'POST'])
@@ -53,7 +51,7 @@ def update_design(id):
 
         db.session.commit()
 
-        flash('La Categoria fue Actualizada!', 'success')
+        flash('El Diseño fue Actualizado!', 'success')
         return redirect(url_for('designs.table_designs'))
 
     elif request.method == 'GET':
@@ -62,7 +60,7 @@ def update_design(id):
 
 
     image_file = url_for('static', filename='photos/' + current_user.image_file)
-    return render_template('design/update_design.html', title='Update Category',
+    return render_template('design/update_anillo.html',
                           form=form, image_file=image_file, design=design)
 
 
@@ -70,18 +68,11 @@ def update_design(id):
 @login_required
 def delete_design(id):
     design_delete = Design.query.get_or_404(id)
-
     db.session.delete(design_delete)
     db.session.commit()
-    flash('Su Categoria fue Borrada!', 'danger')
+    flash('Su Diseño fue Borrada!', 'danger')
     return redirect(url_for('main.home'))
 
-
-@designs.route("/all_designs")
-def all_designs():
-        designs = Design.query.all()
-
-        return render_template('design/all_designs.html', designs=designs)
 
 @designs.route("/del_mundo")
 def world_designs():
@@ -89,16 +80,14 @@ def world_designs():
         return render_template('design/world_designs.html', designs=designs)
 
 
-
 @designs.route("/designs_table")
 @login_required
 def table_designs():
         designs = Design.query.all()
         design_count = db.session.query(Design.id).count()
-
         user_count = db.session.query(User.id).count()
         product_count = db.session.query(Product.productid).count()
 
-        return render_template('design/designs_table.html',
+        return render_template('design/anillos_table.html',
                                designs=designs, design_count=design_count,
                                product_count=product_count, user_count=user_count)

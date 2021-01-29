@@ -5,9 +5,8 @@ from flask_login import login_required
 from sqlalchemy import func
 
 from kl_designs import db
-from kl_designs.models import User, Category, Product, Item, Design
+from kl_designs.models import User, Category, Product, Item, Design, Taller, AnillosCompromiso
 from kl_designs.views.admins.forms import Delivery_Form, Admin_Update_User_AccountForm
-from kl_designs.views.users.forms import UpdateAccountForm
 from kl_designs.views.utils import save_picture
 
 admins = Blueprint('admins', __name__)
@@ -28,6 +27,12 @@ def index():
     designs = Design.query.all()
     design_count = db.session.query(Design.id).count()
 
+    tallers = Taller.query.all()
+    taller_count = db.session.query(Taller.id).count()
+
+    anillos = AnillosCompromiso.query.all()
+    anillo_count = db.session.query(AnillosCompromiso.id).count()
+
     items_ordered = Item.query.filter_by(status='Ordered')
     items_payed = Item.query.filter_by(status='Payed')
 
@@ -41,6 +46,8 @@ def index():
                            designs=designs, design_count=design_count,
                            items_payed=items_payed, items_ordered=items_ordered,
                            total_pending=total_pending, total_ordered=total_ordered,
+                           tallers=tallers, taller_count=taller_count,
+                           anillos=anillos, anillo_count=anillo_count,
                            )
 
 

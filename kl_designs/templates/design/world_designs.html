@@ -11,15 +11,11 @@
 
         <div class="subtitle">
             Estos son nuestros Diseños
-            <p><small><a href="{{ url_for('designs.all_designs') }}">
-                o Simplemente revisa nuestros productos, y diviertete encontrando el mejor diseño para ti...
-            </a></small></p>
         </div>
 
         <div class="sub-home">
-            <div class="col-md-1"></div>
 
-            <div class="col-md-10">
+            <div class="col-md-12">
 
                 {% for design in designs %}
 
@@ -32,15 +28,6 @@
                 {% endfor %}
 
              </div>
-
-        Coming Soon
-
-            India
-            Japan
-            Spain
-            France
-            Maldivas
-
         </div>
 
     </div>
