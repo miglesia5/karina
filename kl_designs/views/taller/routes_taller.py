@@ -27,7 +27,7 @@ def new_tallers():
         flash('Su Taller fue Creado!', 'success')
         return redirect(url_for('admins.index'))
 
-    return render_template('taller/create_anillo.html', title='New Task',
+    return render_template('taller/create_taller.html', title='New Task',
                            form=form, image_file=image_file)
 
 
@@ -36,7 +36,7 @@ def taller(id):
         taller = Taller.query.get_or_404(id)
         image_taller = db.session.query(Taller.image_file)
 
-        return render_template('taller/anillo_details.html', taller=taller, image_taller=image_taller)
+        return render_template('taller/taller_details.html', taller=taller, image_taller=image_taller)
 
 
 @tallers.route("/taller/<int:id>/update", methods=['GET', 'POST'])
@@ -60,7 +60,7 @@ def update_taller(id):
         form.taller_name.data = taller.taller_name
 
     image_file = url_for('static', filename='photos/' + current_user.image_file)
-    return render_template('taller/update_anillo.html', form=form, image_file=image_file, taller=taller)
+    return render_template('taller/update_taller.html', form=form, image_file=image_file, taller=taller)
 
 
 @tallers.route("/delete_taller/<int:id>/delete", methods=['POST'])
@@ -77,7 +77,7 @@ def delete_taller(id):
 @tallers.route("/taller_del_mundo")
 def world_tallers():
         tallers = Taller.query.all()
-        return render_template('taller/world_anillos.html', tallers=tallers)
+        return render_template('taller/world_tallers.html', tallers=tallers)
 
 
 @tallers.route("/tallers_table")
@@ -89,6 +89,6 @@ def table_tallers():
         user_count = db.session.query(User.id).count()
         product_count = db.session.query(Product.productid).count()
 
-        return render_template('taller/anillos_table.html',
+        return render_template('taller/tallers_table.html',
                                tallers=tallers, taller_count=taller_count,
                                product_count=product_count, user_count=user_count)
