@@ -29,4 +29,3 @@ def product_category(category_name):
 
     return render_template('product/products.html', category=category,
                            products=products)
-
